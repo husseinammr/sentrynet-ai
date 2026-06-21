@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>SentryNet — Project Estimator</title>
+<style>
+  body { font-family: 'Courier New', monospace; background: #030a0f; color: #c8dde8; margin: 0; padding: 24px; }
+  h1 { color: #00d4ff; letter-spacing: 4px; font-size: 1.1rem; border-bottom: 1px solid #0e2a3f; padding-bottom: 12px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .card { background: #091521; border: 1px solid #133349; padding: 16px; }
+  .card h3 { color: #00d4ff; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 10px; }
+  .phase { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #0e2a3f; font-size: 0.78rem; }
+  .phase:last-child { border: none; }
+  .phase .hrs { color: #00ff9f; font-weight: bold; }
+  .total-row { display: flex; justify-content: space-between; padding: 10px 0; font-size: 0.9rem; font-weight: bold; margin-top: 8px; }
+  .total-row .val { color: #ffd166; }
+  .badge { display: inline-block; padding: 2px 8px; font-size: 0.65rem; border: 1px solid; margin: 2px; }
+  .badge.c { border-color: #ff3366; color: #ff3366; }
+  .badge.m { border-color: #ffd166; color: #ffd166; }
+  .badge.e { border-color: #00ff9f; color: #00ff9f; }
+  .stack-item { font-size: 0.72rem; padding: 4px 0; border-bottom: 1px solid #0e2a3f; color: #6b8fa3; }
+  .stack-item span { color: #c8dde8; float: right; }
+</style>
+</head>
+<body>
+<h1>🛡 SENTRYNET AI — PROJECT ESTIMATE</h1>
+<div class="grid">
+  <div class="card">
+    <h3>DEVELOPMENT PHASES</h3>
+    <div class="phase"><span>Backend (FastAPI + WebSocket)</span><span class="hrs">20h</span></div>
+    <div class="phase"><span>ML Model (Isolation Forest)</span><span class="hrs">12h</span></div>
+    <div class="phase"><span>Frontend Dashboard</span><span class="hrs">18h</span></div>
+    <div class="phase"><span>Database (MongoDB + PG)</span><span class="hrs">8h</span></div>
+    <div class="phase"><span>GeoIP + Attack Classification</span><span class="hrs">6h</span></div>
+    <div class="phase"><span>Auth System (JWT)</span><span class="hrs">4h</span></div>
+    <div class="phase"><span>Docker + Deployment</span><span class="hrs">6h</span></div>
+    <div class="phase"><span>Testing + Docs</span><span class="hrs">10h</span></div>
+    <div class="total-row"><span>TOTAL ESTIMATE</span><span class="val">84 hours</span></div>
+    <div class="total-row"><span>AT $75/hr</span><span class="val">~$6,300</span></div>
+  </div>
+  <div class="card">
+    <h3>COMPLEXITY</h3>
+    <span class="badge c">Real-time WebSocket</span>
+    <span class="badge c">ML Anomaly Detection</span>
+    <span class="badge m">Dual Database</span>
+    <span class="badge m">GeoIP Visualization</span>
+    <span class="badge e">Docker Compose</span>
+    <span class="badge e">REST API</span>
+    <span class="badge e">JWT Auth</span>
+    <br/><br/>
+    <h3>TECH STACK</h3>
+    <div class="stack-item">Backend <span>FastAPI + Uvicorn</span></div>
+    <div class="stack-item">ML <span>Isolation Forest (sklearn)</span></div>
+    <div class="stack-item">Frontend <span>Chart.js + Vanilla JS</span></div>
+    <div class="stack-item">Database <span>MongoDB + PostgreSQL</span></div>
+    <div class="stack-item">Deploy <span>Docker + Nginx</span></div>
+  </div>
+</div>
+</body>
+</html>

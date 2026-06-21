@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sentrynet-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/sentrynet
+      - POSTGRES_URI=postgresql://postgres:sentrynet@postgres:5432/sentrynet
+      - SECRET_KEY=sentrynet-secret-key-2025
+    depends_on:
+      - mongo
+      - postgres
+    volumes:
+      - ./backend:/app
+      - ./models:/app/models
+      - ./data:/app/data
+    restart: unless-stopped
+    networks:
+      - sentrynet-net
+
+  frontend:
+    image: nginx:alpine
+    container_name: sentrynet-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - sentrynet-net
+
+  mongo:
+    image: mongo:7
+    container_name: sentrynet-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - sentrynet-net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: sentrynet-postgres
+    environment:
+      POSTGRES_DB: sentrynet
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sentrynet
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./backend/utils/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    restart: unless-stopped
+    networks:
+      - sentrynet-net
+
+volumes:
+  mongo_data:
+  pg_data:
+
+networks:
+  sentrynet-net:
+    driver: bridge
